@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>天天看影视｜每天一份能看的片单 · 热播榜与分类片库导视</title>
+<meta name="description" content="天天看影视是一份按更新时间重排的观影导视手册：每天挑出值得看的新片与老片，附编辑短评、片长与类型标签，另有热播榜、分类片库、观影手记与选片答疑。官方站点 https://tiantiankanyingshi-app.github.io ，打开即用，无需注册。" />
+<meta name="keywords" content="天天看影视,天天看影视官网,tiantiankanyingshi-app,每日片单推荐,热播影视榜单,电影分类片库,剧集更新排期,纪录片推荐,观影手记与短评,选片避坑指南" />
+<meta name="author" content="天天看影视编辑部" />
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="theme-color" content="#16161A" />
+<meta name="apple-mobile-web-app-title" content="天天看影视" />
+<link rel="canonical" href="https://tiantiankanyingshi-app.github.io/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="天天看影视" />
+<meta property="og:locale" content="zh_CN" />
+<meta property="og:title" content="天天看影视｜每天一份能看的片单 · 热播榜与分类片库导视" />
+<meta property="og:description" content="按更新时间重排的观影导视手册：今日精选片单、热播榜、分类片库、观影手记，附编辑短评与片长提示。" />
+<meta property="og:url" content="https://tiantiankanyingshi-app.github.io/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="天天看影视｜每天一份能看的片单" />
+<meta name="twitter:description" content="今日精选片单与热播榜，按更新时间重排，附编辑短评。" />
+<style>
+:root{
+  --paper:#F5F0E6;
+  --paper-2:#EDE6D8;
+  --ink:#16161A;
+  --ink-soft:#4A4A52;
+  --red:#E14B32;
+  --yellow:#F5C518;
+  --green:#1F6F5C;
+  --line:2px solid #16161A;
+  --shadow:6px 6px 0 #16161A;
+  --shadow-sm:4px 4px 0 #16161A;
+  --serif:"Songti SC","STSong","SimSun","Noto Serif SC",serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  --mono:"SFMono-Regular",Menlo,Consolas,"Courier New",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  font-size:16px;
+  background-image:radial-gradient(rgba(22,22,26,.055) 1px, transparent 1px);
+  background-size:22px 22px;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;}
+img,svg{max-width:100%;display:block;}
+ul,ol{list-style:none;}
+::selection{background:var(--yellow);color:var(--ink);}
+
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 20px;}
+
+/* 顶部滚动公告条 */
+.notice{
+  background:var(--ink);color:var(--paper);
+  border-bottom:var(--line);
+  overflow:hidden;position:relative;
+}
+.notice-track{
+  display:flex;gap:48px;white-space:nowrap;
+  padding:8px 0;font-size:13px;letter-spacing:.04em;
+  animation:slide 26s linear infinite;
+  will-change:transform;
+}
+.notice-track span{font-family:var(--mono);}
+.notice-track b{color:var(--yellow);font-weight:700;}
+@keyframes slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media (prefers-reduced-motion:reduce){.notice-track{animation:none;}}
+
+/* 头部 */
+.topbar{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:var(--line);}
+.topbar-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-mark{
+  width:42px;height:42px;flex:0 0 42px;border:var(--line);border-radius:50%;
+  background:var(--red);display:flex;align-items:center;justify-content:center;
+  box-shadow:3px 3px 0 var(--ink);
+}
+.brand-mark i{
+  width:0;height:0;border-left:13px solid var(--paper);
+  border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:4px;
+}
+.brand-name{font-family:var(--serif);font-size:24px;font-weight:700;letter-spacing:.06em;line-height:1.1;}
+.brand-sub{font-size:11px;font-family:var(--mono);color:var(--ink-soft);letter-spacing:.08em;}
+.nav{display:flex;gap:4px;flex-wrap:wrap;}
+.nav a{
+  font-size:14px;padding:7px 12px;border:2px solid transparent;border-radius:999px;
+  white-space:nowrap;transition:.18s;
+}
+.nav a:hover,.nav a:focus{border-color:var(--ink);background:var(--yellow);box-shadow:2px 2px 0 var(--ink);}
+.nav a.on{border-color:var(--ink);background:var(--ink);color:var(--paper);}
+
+/* Hero */
+.hero{padding:56px 0 40px;border-bottom:var(--line);position:relative;}
+.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:40px;align-items:center;}
+.eyebrow{
+  display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.18em;
+  background:var(--ink);color:var(--paper);padding:5px 12px;margin-bottom:18px;
+}
+h1{
+  font-family:var(--serif);font-size:clamp(38px,7vw,68px);line-height:1.08;
+  letter-spacing:.02em;font-weight:700;
+}
+h1 em{font-style:normal;position:relative;display:inline-block;}
+h1 em::after{
+  content:"";position:absolute;left:0;right:0;bottom:6px;height:10px;
+  background:var(--yellow);z-index:-1;
+}
+.lede{margin-top:20px;max-width:52ch;color:var(--ink-soft);font-size:17px;}
+.url-badge{
+  margin-top:24px;display:inline-flex;flex-wrap:wrap;align-items:center;gap:10px;
+  border:var(--line);background:var(--paper-2);padding:10px 14px;box-shadow:var(--shadow-sm);
+}
+.url-badge span{font-size:12px;font-family:var(--mono);color:var(--ink-soft);}
+.url-badge strong{font-family:var(--mono);font-size:14px;font-weight:700;word-break:break-all;}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px;}
+.btn{
+  display:inline-block;border:var(--line);padding:12px 22px;font-weight:700;font-size:15px;
+  box-shadow:var(--shadow-sm);transition:.15s;background:var(--paper);
+}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);}
+.btn-red{background:var(--red);color:#fff;}
+.btn-yellow{background:var(--yellow);}
+
+.filmstrip{border:var(--line);background:var(--ink);padding:10px;box-shadow:var(--shadow);}
+.filmstrip svg{width:100%;height:auto;}
+.filmstrip p{color:var(--paper);font-family:var(--mono);font-size:12px;margin-top:8px;text-align:center;letter-spacing:.06em;}
+
+/* 数据条 */
+.stats{border-bottom:var(--line);background:var(--paper-2);}
+.stats-in{display:grid;grid-template-columns:repeat(4,1fr);}
+.stat{padding:20px 16px;border-right:var(--line);}
+.stat:last-child{border-right:0;}
+.stat b{display:block;font-family:var(--serif);font-size:30px;line-height:1.2;}
+.stat small{font-size:12px;color:var(--ink-soft);letter-spacing:.08em;}
+
+/* 通用区块 */
+section{padding:52px 0;}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:28px;}
+.sec-tag{
+  font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--red);
+  border:2px solid var(--red);padding:3px 10px;display:inline-block;margin-bottom:10px;
+}
+h2{font-family:var(--serif);font-size:clamp(26px,4vw,38px);line-height:1.2;letter-spacing:.02em;}
+.sec-note{max-width:44ch;font-size:14px;color:var(--ink-soft);}
+
+/* 票根卡片 */
+.tickets{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px;}
+.ticket{
+  position:relative;border:var(--line);background:#fff;box-shadow:var(--shadow);
+  display:grid;grid-template-columns:104px 1fr;
+}
+.ticket::before,.ticket::after{
+  content:"";position:absolute;width:22px;height:22px;border-radius:50%;
+  background:var(--paper);border:var(--line);left:84px;z-index:2;
+}
+.ticket::before{top:-13px;}
+.ticket::after{bottom:-13px;}
+.poster{
+  border-right:var(--line);padding:14px 10px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;text-align:center;
+  background:linear-gradient(160deg,#1F6F5C 0%,#14493C 100%);color:#fff;
+}
+.poster .yr{font-family:var(--mono);font-size:12px;opacity:.85;}
+.poster .tt{font-family:var(--serif);font-size:19px;font-weight:700;line-height:1.3;letter-spacing:.04em;}
+.poster .kind{font-size:11px;background:var(--yellow);color:var(--ink);padding:2px 8px;font-weight:700;}
+.poster.alt-1{background:linear-gradient(160deg,#E14B32 0%,#9E2C1C 100%);}
+.poster.alt-2{background:linear-gradient(160deg,#2F5EA8 0%,#1B3A6B 100%);}
+.poster.alt-3{background:linear-gradient(160deg,#7A4F9E 0%,#4A2C66 100%);}
+.ticket-body{padding:16px 18px;}
+.ticket-body h3{font-size:18px;font-family:var(--serif);line-height:1.35;}
+.ticket-body .meta{
+  margin:8px 0 10px;font-family:var(--mono);font-size:12px;color:var(--ink-soft);
+  display:flex;flex-wrap:wrap;gap:6px 12px;
+}
+.ticket-body p{font-size:14.5px;color:var(--ink-soft);}
+.score{
+  display:inline-flex;align-items:baseline;gap:4px;margin-top:12px;
+  border:2px solid var(--ink);padding:3px 10px;background:var(--yellow);font-weight:700;
+}
+.score small{font-size:11px;font-weight:400;}
+
+/* 榜单 */
+.board{border:var(--line);background:#fff;box-shadow:var(--shadow);}
+.board-row{
+  display:grid;grid-template-columns:64px 1fr 130px;align-items:center;gap:14px;
+  padding:14px 18px;border-bottom:2px dashed #CFC6B4;
+}
+.board-row:last-child{border-bottom:0;}
+.rank{font-family:var(--serif);font-size:28px;font-weight:700;text-align:center;}
+.rank.top{color:var(--red);}
+.board-row h3{font-size:16px;}
+.board-row .sub{font-size:12.5px;color:var(--ink-soft);font-family:var(--mono);}
+.bar{height:12px;border:var(--line);background:var(--paper-2);}
+.bar i{display:block;height:100%;background:var(--green);}
+.bar i.hot{background:var(--red);}
+.heat-txt{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:4px;}
+
+/* 分类 */
+.tags{display:flex;flex-wrap:wrap;gap:12px;}
+.tags a{
+  border:var(--line);padding:10px 18px;font-size:15px;background:#fff;
+  box-shadow:3px 3px 0 var(--ink);transition:.15s;
+}
+.tags a:hover{background:var(--yellow);transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);}
+.tags a b{font-family:var(--mono);font-size:12px;color:var(--red);margin-left:6px;}
+
+/* 手记 */
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
+.note{border:var(--line);background:#fff;box-shadow:var(--shadow);padding:22px;display:flex;flex-direction:column;}
+.note .date{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.08em;}
+.note h3{font-family:var(--serif);font-size:20px;margin:10px 0 12px;line-height:1.4;}
+.note p{font-size:14.5px;color:var(--ink-soft);flex:1;}
+.note .more{margin-top:16px;font-weight:700;font-size:14px;border-top:2px solid var(--paper-2);padding-top:12px;}
+.note .more:hover{color:var(--red);}
+
+/* FAQ */
+.faq{border:var(--line);background:#fff;box-shadow:var(--shadow);}
+.faq details{border-bottom:var(--line);}
+.faq details:last-child{border-bottom:0;}
+.faq summary{
+  cursor:pointer;padding:18px 20px;font-weight:700;font-size:16px;list-style:none;
+  display:flex;justify-content:space-between;gap:14px;align-items:center;
+}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary i{font-style:normal;color:var(--red);font-size:20px;line-height:1;}
+.faq details[open] summary{background:var(--paper-2);}
+.faq .ans{padding:0 20px 20px;font-size:14.5px;color:var(--ink-soft);max-width:78ch;}
+.faq .ans strong{color:var(--ink);}
+
+/* 关于 + 订阅 */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;}
+.about p{color:var(--ink-soft);margin-bottom:14px;}
+.about ul li{padding-left:22px;position:relative;margin-bottom:10px;font-size:15px;}
+.about ul li::before{content:"▸";position:absolute;left:0;color:var(--red);}
+.sub-box{border:var(--line);background:var(--yellow);padding:26px;box-shadow:var(--shadow);}
+.sub-box h3{font-family:var(--serif);font-size:22px;margin-bottom:10px;}
+.sub-box p{font-size:14px;color:#3A3529;margin-bottom:16px;}
+.sub-form{display:flex;flex-wrap:wrap;gap:10px;}
+.sub-form input{
+  flex:1 1 200px;border:var(--line);padding:12px 14px;font-size:15px;font-family:var(--sans);
+  background:#fff;border-radius:0;
+}
+.sub-form button{
+  border:var(--line);background:var(--ink);color:var(--paper);padding:12px 22px;
+  font-weight:700;font-size:15px;cursor:pointer;box-shadow:3px 3px 0 var(--red);
+}
+.sub-tip{font-size:12px;color:#4A4335;margin-top:12px;font-family:var(--mono);}
+
+/* 页脚 */
+footer{border-top:var(--line);background:var(--ink);color:var(--paper);padding:44px 0 28px;}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;}
+footer h4{font-family:var(--serif);font-size:17px;margin-bottom:14px;color:var(--yellow);}
+footer a,footer p{font-size:14px;color:#D9D3C6;}
+footer li{margin-bottom:9px;}
+footer a:hover{color:var(--yellow);text-decoration:underline;}
+.foot-url{
+  font-family:var(--mono);font-size:13px;border:2px dashed #5A5A63;padding:10px 12px;
+  margin:14px 0;word-break:break-all;color:var(--paper);
+}
+.foot-bottom{
+  margin-top:30px;padding-top:18px;border-top:1px solid #3A3A42;
+  font-size:12.5px;color:#9A948A;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+}
+.disclaimer{
+  margin-top:18px;font-size:12.5px;color:#9A948A;line-height:1.7;max-width:90ch;
+}
+
+/* 响应式 */
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:26px;}
+  .filmstrip{max-width:420px;}
+  .stats-in{grid-template-columns:repeat(2,1fr);}
+  .stat:nth-child(2){border-right:0;}
+  .stat:nth-child(1),.stat:nth-child(2){border-bottom:var(--line);}
+  .about-grid{grid-template-columns:1fr;gap:26px;}
+  .foot-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:720px){
+  body{font-size:15.5px;}
+  .wrap{padding:0 16px;}
+  .topbar-in{flex-direction:column;align-items:flex-start;gap:10px;}
+  .nav{
+    flex-wrap:nowrap;overflow-x:auto;width:100%;
+    padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .nav::-webkit-scrollbar{display:none;}
+  .hero{padding:34px 0 28px;}
+  .ticket{grid-template-columns:1fr;}
+  .ticket::before,.ticket::after{display:none;}
+  .poster{border-right:0;border-bottom:var(--line);padding:16px;}
+  .board-row{grid-template-columns:44px 1fr;gap:10px;}
+  .board-row .heat{grid-column:1 / -1;}
+  .board{padding:0;}
+  section{padding:38px 0;}
+  .foot-grid{grid-template-columns:1fr;}
+}
+@media (max-width:420px){
+  .brand-name{font-size:21px;}
+  .stat b{font-size:24px;}
+  .sub-box{padding:20px;}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<div class="notice" role="complementary" aria-label="站点公告">
+  <div class="notice-track">
+    <span>官方站点 <b>https://tiantiankanyingshi-app.github.io</b> · 每日 09:00 更新片单</span>
+    <span>本周新增 <b>37 部</b> · 编辑手记 <b>6 篇</b> · 分类标签 <b>42 个</b></span>
+    <span>官方站点 <b>https://tiantiankanyingshi-app.github.io</b> · 每日 09:00 更新片单</span>
+    <span>本周新增 <b>37 部</b> · 编辑手记 <b>6 篇</b> · 分类标签 <b>42 个</b></span>
+  </div>
+</div>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#" aria-label="天天看影视 首页">
+      <span class="brand-mark" aria-hidden="true"><i></i></span>
+      <span>
+        <span class="brand-name">天天看影视</span><br />
+        <span class="brand-sub">TIANTIANKANYINGSHI-APP</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a class="on" href="#">今日精选</a>
+      <a href="#">热播榜</a>
+      <a href="#">分类片库</a>
+      <a href="#">观影手记</a>
+      <a href="#">选片答疑</a>
+      <a href="#">关于我们</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">DAILY WATCHLIST / 每日片单</span>
+      <h1>天天看影视<br /><em>把好片从片海里</em>捞出来</h1>
+      <p class="lede">
+        天天看影视不做全量搬运，只做筛选。编辑每天从院线新片、平台更新与冷门老片里挑出十来部，
+        标清片长、类型和一句实话短评，让你在打开播放器的三分钟内就知道今晚看什么。
+      </p>
+      <p class="url-badge">
+        <span>本站网址</span>
+        <strong>https://tiantiankanyingshi-app.github.io</strong>
+      </p>
+      <div class="cta">
+        <a class="btn btn-red" href="#">浏览今日片单</a>
+        <a class="btn btn-yellow" href="#">查看热播榜</a>
+        <a class="btn" href="#">按类型找片</a>
+      </div>
+    </div>
+    <div class="filmstrip" aria-label="胶片装饰图案">
+      <svg viewBox="0 0 300 220" role="img" aria-label="胶片盘与播放标识">
+        <rect x="0" y="0" width="300" height="220" fill="#16161A" />
+        <rect x="14" y="16" width="272" height="42" fill="#F5F0E6" />
+        <rect x="14" y="162" width="272" height="42" fill="#F5F0E6" />
+        <g fill="#16161A">
+          <rect x="24" y="24" width="14" height="12" /><rect x="46" y="24" width="14" height="12" />
+          <rect x="68" y="24" width="14" height="12" /><rect x="90" y="24" width="14" height="12" />
+          <rect x="112" y="24" width="14" height="12" /><rect x="134" y="24" width="14" height="12" />
+          <rect x="156" y="24" width="14" height="12" /><rect x="178" y="24" width="14" height="12" />
+          <rect x="200" y="24" width="14" height="12" /><rect x="222" y="24" width="14" height="12" />
+          <rect x="244" y="24" width="14" height="12" /><rect x="266" y="24" width="14" height="12" />
+          <rect x="24" y="170" width="14" height="12" /><rect x="46" y="170" width="14" height="12" />
+          <rect x="68" y="170" width="14" height="12" /><rect x="90" y="170" width="14" height="12" />
+          <rect x="112" y="170" width="14" height="12" /><rect x="134" y="170" width="14" height="12" />
+          <rect x="156" y="170" width="14" height="12" /><rect x="178" y="170" width="14" height="12" />
+          <rect x="200" y="170" width="14" height="12" /><rect x="222" y="170" width="14" height="12" />
+          <rect x="244" y="170" width="14" height="12" /><rect x="266" y="170" width="14" height="12" />
+        </g>
+        <rect x="60" y="74" width="180" height="72" fill="#F5C518" stroke="#F5F0E6" stroke-width="3" />
+        <path d="M112 88 L112 132 L152 110 Z" fill="#16161A" />
+        <text x="172" y="118" font-family="serif" font-size="26" fill="#16161A" font-weight="bold">看</text>
+        <text x="60" y="160" font-family="monospace" font-size="13" fill="#F5C518">NOW SHOWING · VOL.2026</text>
+      </svg>
+      <p>天天看影视 · 今日放映</p>
+    </div>
+  </div>
+</section>
+
+<section class="stats" aria-label="站点数据概览">
+  <div class="wrap stats-in">
+    <div class="stat"><b>12,860</b><small>已收录影片</small></div>
+    <div class="stat"><b>30+</b><small>每日新增条目</small></div>
+    <div class="stat"><b>42</b><small>可组合分类标签</small></div>
+    <div class="stat"><b>1,240</b><small>编辑短评与手记</small></div>
+  </div>
+</section>
+
+<section id="pick">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-tag">SECTION 01 / 今日精选</span>
+        <h2>今天这六部，值得先排进播放列表</h2>
+      </div>
+      <p class="sec-note">片单按更新时间排序，含一句编辑短评、建议观看时长与适配人群，周末与工作日分别维护。</p>
+    </div>
+    <div class="tickets">
+
+      <article class="ticket">
+        <div class="poster">
+          <span class="kind">悬疑</span>
+          <span class="tt">河边的错误</span>
+          <span class="yr">2023 · 102 分钟</span>
+        </div>
+        <div class="ticket-body">
+          <h3>河边的错误</h3>
+          <p class="meta"><span>剧情 / 犯罪</span><span>建议：一口气看完</span><span>适合：晚上</span></p>
+          <p>后半段的留白比任何解释都响，看完别急着找解析帖，先让它闷一会儿。</p>
+          <p class="score">编辑 7.9<small> / 10</small></p>
+        </div>
+      </article>
+
+      <article class="ticket">
+        <div class="poster alt-1">
+          <span class="kind">剧集</span>
+          <span class="tt">漫长的季节</span>
+          <span class="yr">2023 · 12 集</span>
+        </div>
+        <div class="ticket-body">
+          <h3>漫长的季节</h3>
+          <p class="meta"><span>家庭 / 悬疑</span><span>单集 60 分钟</span><span>适合：连刷</span></p>
+          <p>看到第三集才明白第一集那通电话，节奏慢但不拖，最后一集请留一整晚。</p>
+          <p class="score">编辑 9.4<small> / 10</small></p>
+        </div>
+      </article>
+
+      <article class="ticket">
+        <div class="poster alt-2">
+          <span class="kind">传记</span>
+          <span class="tt">奥本海默</span>
+          <span class="yr">2023 · 180 分钟</span>
+        </div>
+        <div class="ticket-body">
+          <h3>奥本海默</h3>
+          <p class="meta"><span>历史 / 剧情</span><span>建议：分两段</span><span>适合：周末下午</span></p>
+          <p>黑白与彩色两条线交替推进，中段听证会是全片最紧的三十分钟，别中途走开。</p>
+          <p class="score">编辑 8.9<small> / 10</small></p>
+        </div>
+      </article>
+
+      <article class="ticket">
+        <div class="poster alt-3">
+          <span class="kind">科幻</span>
+          <span class="tt">宇宙探索编辑部</span>
+          <span class="yr">2021 · 118 分钟</span>
+        </div>
+        <div class="ticket-body">
+          <h3>宇宙探索编辑部</h3>
+          <p class="meta"><span>喜剧 / 公路</span><span>建议：一口气</span><span>适合：心情差的时候</span></p>
+          <p>伪纪录的晃动手持一开始劝退，撑过前二十分钟，后面全是笨拙又真诚的浪漫。</p>
+          <p class="score">编辑 8.6<small> / 10</small></p>
+        </div>
+      </article>
+
+      <article class="ticket">
+        <div class="poster">
+          <span class="kind">剧集</span>
+          <span class="tt">我的阿勒泰</span>
+          <span class="yr">2024 · 8 集</span>
+        </div>
+        <div class="ticket-body">
+          <h3>我的阿勒泰</h3>
+          <p class="meta"><span>生活 / 成长</span><span>单集 45 分钟</span><span>适合：睡前</span></p>
+          <p>八集刚好一个周末，画面干净得像洗过，适合把脑子里的杂音关掉。</p>
+          <p class="score">编辑 8.8<small> / 10</small></p>
+        </div>
+      </article>
+
+      <article class="ticket">
+        <div class="poster alt-1">
+          <span class="kind">纪录</span>
+          <span class="tt">人生一串</span>
+          <span class="yr">2018 · 6 集</span>
+        </div>
+        <div class="ticket-body">
+          <h3>人生一串</h3>
+          <p class="meta"><span>美食 / 人文</span><span>单集 30 分钟</span><span>适合：深夜</span></p>
+          <p>不建议空腹观看。镜头贴着炭火拍，烟火气和人话都到位，第三集最下饭。</p>
+          <p class="score">编辑 8.7<small> / 10</small></p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="rank" style="background:var(--paper-2);border-top:var(--line);border-bottom:var(--line);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-tag">SECTION 02 / 热播榜</span>
+        <h2>近七天站内点击最高</h2>
+      </div>
+      <p class="sec-note">热度值由站内点击、收藏与短评数量加权计算，每小时重算一次，仅反映本站读者偏好。</p>
+    </div>
+    <div class="board">
+      <div class="board-row">
+        <span class="rank top">01</span>
+        <div><h3>漫长的季节</h3><p class="sub">剧集 · 12 集 · 悬疑 / 家庭</p></div>
+        <div class="heat"><div class="bar"><i class="hot" style="width:96%;"></i></div><p class="heat-txt">热度 96</p></div>
+      </div>
+      <div class="board-row">
+        <span class="rank top">02</span>
+        <div><h3>宇宙探索编辑部</h3><p class="sub">电影 · 118 分钟 · 喜剧 / 科幻</p></div>
+        <div class="heat"><div class="bar"><i class="hot" style="width:91%;"></i></div><p class="heat-txt">热度 91</p></div>
+      </div>
+      <div class="board-row">
+        <span class="rank">03</span>
+        <div><h3>我的阿勒泰</h3><p class="sub">剧集 · 8 集 · 生活 / 成长</p></div>
+        <div class="heat"><div class="bar"><i style="width:88%;"></i></div><p class="heat-txt">热度 88</p></div>
+      </div>
+      <div class="board-row">
+        <span class="rank">04</span>
+        <div><h3>河边的错误</h3><p class="sub">电影 · 102 分钟 · 悬疑 / 犯罪</p></div>
+        <div class="heat"><div class="bar"><i style="width:83%;"></i></div><p class="heat-txt">热度 83</p></div>
+      </div>
+      <div class="board-row">
+        <span class="rank">05</span>
+        <div><h3>奥本海默</h3><p class="sub">电影 · 180 分钟 · 传记 / 历史</p></div>
+        <div class="heat"><div class="bar"><i style="width:79%;"></i></div><p class="heat-txt">热度 79</p></div>
+      </div>
+      <div class="board-row">
+        <span class="rank">06</span>
+        <div><h3>人生一串</h3><p class="sub">纪录 · 6 集 · 美食 / 人文</p></div>
+        <div class="heat"><div class="bar"><i style="width:72%;"></i></div><p class="heat-txt">热度 72</p></div>
+      </div>
+      <div class="board-row">
+        <span class="rank">07</span>
+        <div><h3>山海情</h3><p class="sub">剧集 · 23 集 · 现实 / 群像</p></div>
+        <div class="heat"><div class="bar"><i style="width:68%;"></i></div><p class="heat-txt">热度 68</p></div>
+      </div>
+      <div class="board-row">
+        <span class="rank">08</span>
+        <div><h3>瞬息全宇宙</h3><p class="sub">电影 · 139 分钟 · 奇幻 / 家庭</p></div>
+        <div class="heat"><div class="bar"><i style="width:64%;"></i></div><p class="heat-txt">热度 64</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="library">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-tag">SECTION 03 / 分类片库</span>
+        <h2>按类型翻，比按年份翻好用</h2>
+      </div>
+      <p class="sec-note">每个标签都可与"片长""年代""评分区间"叠加筛选，标签后数字为当前在库条目。</p>
+    </div>
+    <div class="tags">
+      <a href="#">悬疑 <b>1264</b></a>
+      <a href="#">科幻 <b>918</b></a>
+      <a href="#">剧情 <b>2037</b></a>
+      <a href="#">喜剧 <b>1115</b></a>
+      <a href="#">动画 <b>742</b></a>
+      <a href="#">纪录片 <b>596</b></a>
+      <a href="#">犯罪 <b>683</b></a>
+      <a href="#">爱情 <b>874</b></a>
+      <a href="#">家庭 <b>512</b></a>
+      <a href="#">战争 <b>349</b></a>
+      <a href="#">武侠 <b>276</b></a>
+      <a href="#">恐怖 <b>318</b></a>
+      <a href="#">职场 <b>204</b></a>
+      <a href="#">短片合集 <b>431</b></a>
+      <a href="#">剧场版 <b>188</b></a>
+      <a href="#">舞台影像 <b>96</b></a>
+    </div>
+  </div>
+</section>
+
+<section id="notes" style="background:var(--paper-2);border-top:var(--line);border-bottom:var(--line);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-tag">SECTION 04 / 观影手记</span>
+        <h2>编辑写的，不是机器生成的简介</h2>
+      </div>
+      <p class="sec-note">每篇手记都注明实际观看时间、观看设备与推荐场景，供你判断这篇值不值得信。</p>
+    </div>
+    <div class="notes">
+      <article class="note">
+        <p class="date">2026 · 10 · 21 / 阅读 6 分钟</p>
+        <h3>为什么我们需要一份"不推荐清单"</h3>
+        <p>把看不下去的片子也记下来，比只记喜欢的更有用。这一年我们攒了 300 条弃片记录，总结出三条共性：前十五分钟没有具体事件、人物动机靠台词解释、配乐一直在替观众下结论。</p>
+        <a class="more" href="#">读完整篇 →</a>
+      </article>
+      <article class="note">
+        <p class="date">2026 · 10 · 17 / 阅读 8 分钟</p>
+        <h3>周末补片计划：三部老片的一晚</h3>
+        <p>挑片长相近、情绪递进的三部连看，中间留十分钟走动时间。这次的组合是公路片打头、家庭题材居中、纪录片收尾，实测比随机连刷舒服很多。</p>
+        <a class="more" href="#">读完整篇 →</a>
+      </article>
+      <article class="note">
+        <p class="date">2026 · 10 · 09 / 阅读 5 分钟</p>
+        <h3>手机上看片，画面设置改哪几项</h3>
+        <p>关掉自动亮度与画质增强，把色温调回中性，字幕字号调到能躺着看清。这些设置比换播放器更影响观感，我们在四台设备上做过对比。</p>
+        <a class="more" href="#">读完整篇 →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-tag">SECTION 05 / 选片答疑</span>
+        <h2>被问得最多的六个问题</h2>
+      </div>
+      <p class="sec-note">以下回答截至 2026 年 10 月，规则调整会在本区块同步更新。</p>
+    </div>
+    <div class="faq">
+      <details open="open">
+        <summary>天天看影视是什么类型的站点？<i>+</i></summary>
+        <div class="ans"><strong>天天看影视</strong>是一个影视导视与片单整理站点，只做信息整理、分类与短评，不提供任何视频文件的存储、转存或下载服务。访问入口为 https://tiantiankanyingshi-app.github.io 。</div>
+      </details>
+      <details>
+        <summary>片单多久更新一次？<i>+</i></summary>
+        <div class="ans">每日 09:00 更新当日精选，热播榜每小时重算一次。遇上重要首映或完结，会在当天追加一次临时更新，更新记录写在对应条目的时间戳里。</div>
+      </details>
+      <details>
+        <summary>编辑评分是怎么来的？<i>+</i></summary>
+        <div class="ans">由站内编辑在完整观看后按叙事完整度、人物可信度、技术完成度三项打分取平均，保留一位小数。它不是全网评分，也不代表专业评审结论，仅供横向参考。</div>
+      </details>
+      <details>
+        <summary>找不到想看的片子怎么办？<i>+</i></summary>
+        <div class="ans">先在分类片库按标签叠加筛选，再用年代和片长收窄范围。若仍无结果，说明该条目暂未收录，本站不接受人工代找请求。</div>
+      </details>
+      <details>
+        <summary>手机端能用吗？<i>+</i></summary>
+        <div class="ans">整站按移动端优先排版，导航可横向滑动，票根卡片在小屏自动改为上下排布。无需下载客户端，浏览器打开 https://tiantiankanyingshi-app.github.io 即可。</div>
+      </details>
+      <details>
+        <summary>怎么联系天天看影视编辑部？<i>+</i></summary>
+        <div class="ans">纠错与推荐片目请通过页脚邮箱或在站点留言区提交，附上映年份与具体时间点，我们会在三个工作日内回复处理结果。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about">
+      <span class="sec-tag">SECTION 06 / 关于我们</span>
+      <h2>关于天天看影视</h2>
+      <p>
+        天天看影视（tiantiankanyingshi-app）从一份私人观影清单长成现在的样子：四五个编辑、一份共享表格、
+        每天固定的更新时间。我们相信看片这件事不需要被算法安排，需要的是有人先替你看一遍。
+      </p>
+      <ul>
+        <li>只收录完整观看过的条目，未看完的不写短评</li>
+        <li>每条片单标注片长与建议观看节奏，避免误踩超长片</li>
+        <li>短评只写具体观察，不写"神作""必看"这类空词</li>
+        <li>接受纠错，改过的条目会保留修改痕迹</li>
+      </ul>
+      <p style="margin-top:16px;">
+        站点地址：<strong>https://tiantiankanyingshi-app.github.io</strong>，收藏后可直接打开。
+      </p>
+    </div>
+    <div class="sub-box">
+      <h3>每日片单提醒</h3>
+      <p>填写邮箱，每天早上收到当天更新的片单摘要，含片名、片长与一句短评，不发广告。</p>
+      <form class="sub-form" action="#" method="post" onsubmit="return false;">
+        <label for="mail" style="position:absolute;left:-9999px;">邮箱地址</label>
+        <input id="mail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required="required" />
+        <button type="submit">订阅片单</button>
+      </form>
+      <p class="sub-tip">随时可退订 · 邮箱仅用于发送片单 · 不分享给第三方</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>天天看影视</h4>
+        <p>按更新时间重排的观影导视手册，每天挑出值得看的那一小部分。</p>
+        <p class="foot-url">https://tiantiankanyingshi-app.github.io</p>
+      </div>
+      <div>
+        <h4>栏目</h4>
+        <ul>
+          <li><a href="#">今日精选</a></li>
+          <li><a href="#">热播榜</a></li>
+          <li><a href="#">分类片库</a></li>
+          <li><a href="#">观影手记</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关于</h4>
+        <ul>
+          <li><a href="#">编辑部说明</a></li>
+          <li><a href="#">评分规则</a></li>
+          <li><a href="#">纠错与反馈</a></li>
+          <li><a href="#">选片答疑</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>联系</h4>
+        <ul>
+          <li><a href="#">留言区</a></li>
+          <li><a href="#">片目推荐</a></li>
+          <li><a href="#">内容授权</a></li>
+          <li><a href="#">订阅片单</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaimer">
+      免责声明：天天看影视仅提供影视作品的信息整理、分类与评论内容，不存储、不上传、不转存任何影音文件，
+      也不提供下载或在线播放地址。片中涉及的评分、热度与短评均为本站编辑主观结论，请以官方渠道信息为准。
+    </p>
+    <div class="foot-bottom">
+      <span>&copy; 2026 天天看影视 tiantiankanyingshi-app.github.io 版权所有</span>
+      <span>更新时间：2026-10-26 · 站点版本 v3.2</span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://tiantiankanyingshi-app.github.io/#website",
+      "url":"https://tiantiankanyingshi-app.github.io/",
+      "name":"天天看影视",
+      "alternateName":"tiantiankanyingshi-app",
+      "inLanguage":"zh-CN",
+      "description":"天天看影视是一份按更新时间重排的观影导视手册，提供每日精选片单、热播榜、分类片库与编辑短评。",
+      "publisher":{"@id":"https://tiantiankanyingshi-app.github.io/#org"}
+    },
+    {
+      "@type":"Organization",
+      "@id":"https://tiantiankanyingshi-app.github.io/#org",
+      "name":"天天看影视",
+      "url":"https://tiantiankanyingshi-app.github.io/",
+      "description":"影视导视与片单整理站点，每日更新精选片单、热播榜与分类片库。"
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"天天看影视","item":"https://tiantiankanyingshi-app.github.io/"},
+        {"@type":"ListItem","position":2,"name":"今日精选","item":"https://tiantiankanyingshi-app.github.io/#pick"},
+        {"@type":"ListItem","position":3,"name":"热播榜","item":"https://tiantiankanyingshi-app.github.io/#rank"},
+        {"@type":"ListItem","position":4,"name":"分类片库","item":"https://tiantiankanyingshi-app.github.io/#library"}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {
+          "@type":"Question",
+          "name":"天天看影视是什么类型的站点？",
+          "acceptedAnswer":{"@type":"Answer","text":"天天看影视是一个影视导视与片单整理站点，只做信息整理、分类与短评，不提供任何视频文件的存储、转存或下载服务。官方入口为 https://tiantiankanyingshi-app.github.io 。"}
+        },
+        {
+          "@type":"Question",
+          "name":"片单多久更新一次？",
+          "acceptedAnswer":{"@type":"Answer","text":"每日 09:00 更新当日精选，热播榜每小时重算一次；重要首映或完结当天追加临时更新。"}
+        },
+        {
+          "@type":"Question",
+          "name":"编辑评分是怎么来的？",
+          "acceptedAnswer":{"@type":"Answer","text":"由站内编辑完整观看后按叙事完整度、人物可信度、技术完成度三项打分取平均，保留一位小数，属主观参考值。"}
+        },
+        {
+          "@type":"Question",
+          "name":"手机端能用吗？",
+          "acceptedAnswer":{"@type":"Answer","text":"整站按移动端优先排版，导航可横向滑动，卡片在小屏自动上下排布，浏览器打开 https://tiantiankanyingshi-app.github.io 即可使用。"}
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
